@@ -1,13 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<!--    scope="prototype"表示该bean是非单例，默认是单例的-->
+<!--    <bean id="person" class="com.jali.bean.Person" scope="prototype">-->
     <bean id="person" class="com.jali.bean.Person">
         <property name="id" value="1"></property>
         <property name="name" value="张三"></property>
         <property name="age" value="20"></property>
         <property name="gender" value="男"></property>
+    </bean>
+
+<!--    用p命名空间来给属性赋值-->
+    <bean id="person2" class="com.jali.bean.Person"
+          p:id="1" p:name="lisi" p:age="22" p:gender="女"></bean>
+
+    <bean id="person3" class="com.jali.bean.Person">
+        <property name="hobbies">
+            <array>
+                <value>张三</value>
+                <value>李四</value>
+                <value>王五</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="person4" class="com.jali.bean.Person" depends-on="person">
+        <property name="lists">
+            <list>
+                <ref bean="address1"></ref>
+                <ref bean="address2"></ref>
+                <ref bean="address3"></ref>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="address1" class="com.jali.bean.Address">
+        <property name="province" value="1"></property>
+        <property name="city" value="1"></property>
+        <property name="town" value="1"></property>
+    </bean>
+
+    <bean id="address2" class="com.jali.bean.Address">
+        <property name="province" value="2"></property>
+        <property name="city" value="2"></property>
+        <property name="town" value="2"></property>
+    </bean>
+
+    <bean id="address3" class="com.jali.bean.Address">
+        <property name="province" value="3"></property>
+        <property name="city" value="3"></property>
+        <property name="town" value="3"></property>
     </bean>
 
 </beans>
