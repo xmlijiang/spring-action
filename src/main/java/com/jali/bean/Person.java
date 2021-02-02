@@ -16,6 +16,15 @@ public class Person {
         System.out.println("person被初始化");
     }
 
+    public void init(){
+        // 编写N行代码完成初始化功能
+        System.out.println("person init对象初始化完成");
+    }
+
+    public void destroy(){
+        System.out.println("person destroy对象被销毁");
+    }
+
     public int getId() {
         return id;
     }

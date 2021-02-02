@@ -55,4 +55,19 @@
         <property name="town" value="3"></property>
     </bean>
 
+    <bean id="myFactoryBean" class="com.jali.factory.MyFactoryBean"></bean>
+
+    <bean id="person5" class="com.jali.factory.PersonStaticFactory" factory-method="getInstance">
+        <constructor-arg value="person5"></constructor-arg>
+    </bean>
+
+    <bean id="instanceFactory" class="com.jali.factory.PersonInstanceFactory"></bean>
+
+    <bean id="person6" factory-bean="instanceFactory" factory-method="getInstance">
+        <constructor-arg value="person6"></constructor-arg>
+    </bean>
+
+    <bean id="person7" class="com.jali.bean.Person" init-method="init" destroy-method="destroy"></bean>
+
+    <bean id="myBeanPostProcessor" class="com.jali.bean.MyBeanPostProcessor"></bean>
 </beans>
