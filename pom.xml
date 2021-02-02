@@ -6,7 +6,12 @@
 
     <groupId>com.jali</groupId>
     <artifactId>spring-action</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>1_spring-ioc</module>
+        <module>2_spring-apo</module>
+    </modules>
 
     <dependencies>
         <dependency>
