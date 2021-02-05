@@ -1,6 +1,7 @@
 package com.jali.proxy;
 
 import com.jali.service.Caculator;
+import com.jali.util.LogUtil4;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -27,16 +28,21 @@ public class CalculatorProxy {
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 Object result = null;
                 try {
-                    System.out.println("代理日志，开始执行方法"+ method.getName()+",参数："+ Arrays.asList(args));
+//                    System.out.println("代理日志，开始执行方法"+ method.getName()+",参数："+ Arrays.asList(args));
                     // 开始调用被代理类的方法
+                    LogUtil4.start();
                     result = method.invoke(calculator, args);
-                    System.out.println("代理日志，方法"+method.getName()+",返回结果："+result);
+                    LogUtil4.stop();
+//                    System.out.println("代理日志，方法"+method.getName()+",返回结果："+result);
                 }catch (Exception e){
-                    System.out.println(method.getName()+"方法抛出异常："+e.getMessage());
+                    LogUtil4.logException();
+//                    System.out.println(method.getName()+"方法抛出异常："+e.getMessage());
                     e.printStackTrace();
                 }finally {
-                    System.out.println(method.getName()+"方法执行结束");
+//                    System.out.println(method.getName()+"方法执行结束");
+                    LogUtil4.end();
                 }
+
                 return result;
             }
         };

@@ -20,16 +20,26 @@ public class MyCalculator3 implements Caculator{
         return result;
     }
 
-    public int sub(Integer i, Integer j) throws NoSuchMethodException {
-        Method method = MyCalculator3.class.getMethod("sub",Integer.class,Integer.class);
+    public int sub(Integer i, Integer j) {
+        Method method = null;
+        try {
+            method = MyCalculator3.class.getMethod("sub",Integer.class,Integer.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
         LogUtil3.start(method,i,j);
         int result = i-j;
         LogUtil3.end(method,result);
         return result;
     }
 
-    public int mul(Integer i, Integer j) throws NoSuchMethodException {
-        Method method = MyCalculator3.class.getMethod("mul",Integer.class,Integer.class);
+    public int mul(Integer i, Integer j) {
+        Method method = null;
+        try {
+            method = MyCalculator3.class.getMethod("mul",Integer.class,Integer.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
         LogUtil3.start(method,i,j);
         int result = i*j;
         LogUtil3.end(method,result);

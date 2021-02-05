@@ -1,13 +1,24 @@
 import com.jali.proxy.CalculatorProxy;
 import com.jali.service.*;
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.lang.reflect.Proxy;
 
 public class MyTest {
 
     @Test
-    public void testAop() throws NoSuchMethodException {
+    public void testAspect(){
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        Caculator calculator = context.getBean(Caculator.class);
+        System.out.println(calculator.add(10, 20));
+        System.out.println(calculator.sub(10, 20));
+        System.out.println(calculator.mul(10, 20));
+        System.out.println(calculator.div(10, 10));
+    }
+
+    @Test
+    public void testAop() {
 //        Caculator caculator = new MyCalculator();
 //        System.out.println(caculator.add(1, 4));
 

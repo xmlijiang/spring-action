@@ -3,9 +3,6 @@ package com.jali.util;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-
 
 /**
  * 设置以下方法在什么时候运行
@@ -18,27 +15,33 @@ import java.util.Arrays;
  * 当编写完注解之后还需要设置在哪些方法上执行，使用表达式
  * execution（访问修饰符 返回值类型 方法全称）
  *
+ * 参数要一致，不能基础类型和包装类混用
+ * 例如:
+ * execution(public int com.jali.service.MyCalculator.*(int,int))
+ * execution(public int com.jali.service.MyCalculator.*(Integer,Integer))
+ * 两者是不一样的
+ *
  */
 @Component
 @Aspect
-public class LogUtil4 {
+public class LogUtil {
 
-    @Before("execution(public int com.jali.service.Caculator.*(Integer,Integer))")
+    @Before("execution(public int com.jali.service.MyCalculator.*(int,int))")
     public static void start(){
         System.out.println("方法开始执行，参数：");
     }
 
-    @AfterReturning("execution(public int com.jali.service.Caculator.*(Integer,Integer))")
+    @AfterReturning("execution(public int com.jali.service.MyCalculator.*(int,int))")
     public static void stop(){
         System.out.println("方法执行完成，结果是：");
     }
 
-    @AfterThrowing("execution(public int com.jali.service.Caculator.*(Integer,Integer))")
+    @AfterThrowing("execution(public int com.jali.service.MyCalculator.*(int,int))")
     public static void logException(){
         System.out.println("方法出现异常：");
     }
 
-    @After("execution(public int com.jali.service.Caculator.*(Integer,Integer))")
+    @After("execution(public int com.jali.service.MyCalculator.*(int,int))")
     public static void end(){
         System.out.println("方法执行结束了...");
     }

@@ -7,9 +7,9 @@ public interface Caculator {
 
     int add(Integer i,Integer j);
 
-    int sub(Integer i,Integer j) throws NoSuchMethodException;
+    int sub(Integer i,Integer j);
 
-    int mul(Integer i,Integer j) throws NoSuchMethodException;
+    int mul(Integer i,Integer j);
 
     int div(Integer i,Integer j);
 }
