@@ -1,9 +1,11 @@
 package com.jali.service;
 
 import com.jali.util.LogUtil3;
+import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
 
+@Service
 public class MyCalculator4 implements Caculator{
 
     public int add(Integer i, Integer j) {
