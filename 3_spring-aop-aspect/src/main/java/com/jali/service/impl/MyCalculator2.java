@@ -1,10 +1,10 @@
-package com.jali.service;
+package com.jali.service.impl;
 
 import org.springframework.stereotype.Service;
 
 @Service
 //public class MyCalculator implements Calculator{
-public class MyCalculator{
+public class MyCalculator2 {
     public int add(int i, int j) {
         int result = i+j;
         return result;
