@@ -13,7 +13,7 @@ public class MyTest {
 //        System.out.println(bean.add(1, 2));
 
         MyCalculator2 bean2 = context.getBean(MyCalculator2.class);
-        System.out.println(bean2.div(6, 2));
+        System.out.println(bean2.div(6, 0));
     }
 
     @Test

@@ -102,31 +102,33 @@ public class LogUtil2 {
     @Pointcut("execution(* *(..))")
     public void myPointCut(){}
 
+    @After(value = "myPointCut()")
+    public static void end(JoinPoint joinPoint){
+        Signature signature = joinPoint.getSignature();
+        System.out.println(signature.getName()+" 4 普通后置After 方法执行结束了...");
+    }
+
     @Before(value = "execution(* *(..)) && args(i,j)",argNames = "i,j")
     private void start(int i,int j){
 //        Signature signature = joinPoint.getSignature();
-        System.out.println("2方法开始执行，参数："+ i+","+j);
+        System.out.println("2 普通前置Before 方法开始执行，参数："+ i+","+j);
     }
 
     @AfterReturning(value = "execution(public int com.jali.service.MyCalculator.*(int,int)) || execution(* *(..))",
         returning = "result")
     public static void stop(JoinPoint joinPoint,Object result){
         Signature signature = joinPoint.getSignature();
-        System.out.println(signature.getName()+" 3方法执行完成，结果是："+result);
+        System.out.println(signature.getName()+" 3 普通返回AfterReturning 方法执行完成，结果是："+result);
     }
 
     @AfterThrowing(value = "!execution(public int com.jali.service.MyCalculator.*(int,int))",
         throwing = "e")
     public static void logException(JoinPoint joinPoint,Throwable e){
         Signature signature = joinPoint.getSignature();
-        System.out.println(signature.getName()+" 4方法出现异常："+e.getMessage());
+        System.out.println(signature.getName()+" 4 普通异常AfterThrowing 方法出现异常："+e.getMessage());
     }
 
-    @After("myPointCut()")
-    public static void end(JoinPoint joinPoint){
-        Signature signature = joinPoint.getSignature();
-        System.out.println(signature.getName()+" 4方法执行结束了...");
-    }
+
 
     @Around(value = "myPointCut()")
     public Object around(ProceedingJoinPoint proceedingJoinPoint) {
@@ -134,8 +136,7 @@ public class LogUtil2 {
         Object[] args = proceedingJoinPoint.getArgs();
         Object result = null;
         try{
-            System.out.println("1环绕通知before："+signature.getName()+"方法开始执行，参数："+Arrays.asList(args));
-
+            System.out.println("1环绕通知前置 before："+signature.getName()+"方法开始执行，参数："+Arrays.asList(args));
             // 通过反射的方式调用目标的方法，相当于执行method.invoke()，可以自己修改结果值
             result = proceedingJoinPoint.proceed();
             result = 100;

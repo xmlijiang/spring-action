@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 @Component
-@Aspect
+//@Aspect
 @Order(2)
 public class SecurityUtil {
 
