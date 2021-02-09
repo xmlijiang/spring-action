@@ -7,6 +7,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MyTest {
 
     @Test
+    public void testXmlAspect(){
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("aop.xml");
+        MyCalculator bean = context.getBean(MyCalculator.class);
+        System.out.println(bean.add(1, 2));
+    }
+
+    @Test
     public void testMyCalculator2(){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 //        MyCalculator bean = context.getBean(MyCalculator.class);
