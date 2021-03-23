@@ -12,7 +12,7 @@
         <module>1_spring-ioc</module>
         <module>2_spring-apo</module>
         <module>3_spring-aop-aspect</module>
-        <module>_4_spring-aop-tx</module>
+        <module>4_spring-aop-tx</module>
     </modules>
 
     <dependencies>
