@@ -74,13 +74,13 @@ public class BookService {
         }
     }
 
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.SUPPORTS)
     public void buyBookByTx1(){
         bookDao.getPrice(1);
         bookDao.updateBalance("zhangsan",100);
-        // 此时执行到此处，发生异常，直接到catch中，不会往下执行updateStock，然后上面两句正常提交了
-//        int i = 1/0;
         bookDao.updateStock(1);
+        // 出现异常
+         int i = 1/0;
     }
 
     @Transactional(propagation = Propagation.REQUIRED)

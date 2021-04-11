@@ -16,7 +16,14 @@ public class MultService {
 
     @Transactional
     public void mult() {
+        // REQUIRES_NEW，自己的异常，不回滚
         bookService.buyBookByTx1();
+        // REQUIRED 异常回滚
         bookService.buyBookByTx2();
+    }
+
+    // @Transactional
+    public void testSupport(){
+        bookService.buyBookByTx1();
     }
 }

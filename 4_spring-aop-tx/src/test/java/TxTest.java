@@ -18,4 +18,10 @@ public class TxTest {
         MultService bean = context.getBean(MultService.class);
         bean.mult();
     }
+
+    @Test
+    public void test02(){
+        MultService bean = context.getBean(MultService.class);
+        bean.testSupport();
+    }
 }
